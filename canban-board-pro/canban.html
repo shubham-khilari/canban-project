@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="canban.css" />
+  </head>
+  <body>
+    <div class="toolbox-cont">
+      <div class="toolbox-priority-cont">
+        <div class="lightpink color"></div>
+        <div class="lightgreen color"></div>
+        <div class="lightblue color"></div>
+        <div class="black color"></div>
+        <h1>REJUVNATE</h1>
+      </div>
+      <div class="action-btn-cont">
+        <div class="add-btn">
+            <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="remove-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+      </div>
+    </div>
+    <!-- ticket html-->
+    <div class="main-cont">
+        <!-- <div class="ticket-cont">
+            <div class="ticket-color"></div>
+            <div class="ticket-id">12345</div>
+            <div class="task-area">Random Task</div>
+            <div class="ticket-lock">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+        </div> -->
+    </div>
+    <!-- popup -->
+    <div class="modal-cont">
+        <textarea class="textArea-cont" placeholder="Enter Your Task"></textarea>
+        <div class="priority-colors-container">
+            <div class="lightpink priority-color"></div>
+            <div class="lightgreen priority-color"></div>
+            <div class="lightblue priority-color"></div>
+            <div class="black priority-color active"></div>
+        </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/589957875e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
+    <script src="./canban.js"></script>
+  </body>
+</html>
