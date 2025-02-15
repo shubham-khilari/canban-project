@@ -1,142 +1,214 @@
 * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .toolbox-cont {
-    height: 5rem;
-    background-color: #4b4b4b;
-    display: flex;
-    align-items: center;
-  }
-  
-  .toolbox-cont > * {
-    margin-left: 4rem;
-  }
-  
-  .toolbox-priority-cont {
-    height: 3.5rem;
-    width: 18rem;
-    background-color: #3d3d3d;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    /* gap:1.5rem; */
-  }
-  
-  .toolbox-priority-cont > *:hover {
-    background-color: #485460;
-  }
-  
-  .color {
-    height: 1.5rem;
-    width: 3rem;
-  }
-  
-  .lightpink {
-    background-color: lightpink;
-  }
-  .lightblue {
-    background-color: lightblue;
-  }
-  .lightgreen {
-    background-color: lightgreen;
-  }
-  .black {
-    background-color: black;
-  }
-  
-  /* action button css */
-  
-  .action-btn-cont {
-    height: 3.5rem;
-    width: 8rem;
-    background-color: #3d3d3d;
-    display: flex;
-  }
-  .action-btn-cont > * {
-    display: flex;
-    width: 50%;
-    font-size: 2rem;
-    color: white;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .add-btn:hover,
-  .remove-btn:hover {
-    background: #4bb543;
-  }
-  
-  /* ticket css */
-  .main-cont {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    padding: 2rem;
-    justify-content: center;
-  }
-  
-  .ticket-cont{
-      height:12rem;
-      width:15rem;
-      background-color: coral;
-  }
-  .ticket-color{
-      height:1rem;
-  }
-  .ticket-id{
-      background-color: yellow;
-      height:2rem;
-  }
-  
-  .ticket-lock{
-      display: flex ;
-      justify-content: flex-end;
-      margin-top:90px;
-      margin-right:5px;
-      font-size:1.5rem;
-  }
-  
-  /** Modal css */
-  .modal-cont{
-     height:50vh;
-     width:45vw;
-     display: flex;
-     position:absolute;
-     top:30%;
-     left:27%;
-  }
-  
-  .textArea-cont{
-      height:100%;
-      width:75%;
-      resize:none;
-      outline:none;
-      border:none;
-      background-color: #dfe4ea;
-      font-size:2rem;
-      color:black;
-      padding:2rem;
-  }
-  .priority-colors-container{
-      height:100%;
-      width:25%;
-      display: flex;
-      flex-direction: column;
-      background-color: #4b4b4b;
-      align-items: center;
-      justify-content: space-around;
-  }
-  
-  .priority-color{
-      height:3rem;
-      width:5rem;
-  }
-  
-  .active{
-      border:5px solid lightsalmon
-  }
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif; /* Apply Roboto font to all elements */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  color: whitesmoke;
+  font-family: 'Roboto', sans-serif; /* Apply Roboto font to the title */
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+.toolbox-cont {
+  height: 5rem;
+  background-color: #4b4b4b;
+  display: flex;
+  align-items: center;
+}
+
+.toolbox-cont > * {
+  margin-left: 4rem;
+}
+
+.toolbox-priority-cont {
+  height: 3.5rem;
+  width: 18rem;
+  background-color: #3d3d3d;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* gap:1.5rem; */
+}
+
+.toolbox-priority-cont > *:hover {
+  background-color: #485460;
+}
+
+.color {
+  height: 1.5rem;
+  width: 3rem;
+}
+
+.lightpink {
+  background-color: lightpink;
+}
+.lightblue {
+  background-color: lightblue;
+}
+.lightgreen {
+  background-color: lightgreen;
+}
+.black {
+  background-color: black;
+}
+
+/* action button css */
+
+.action-btn-cont {
+  height: 3.5rem;
+  width: 8rem;
+  background-color: #3d3d3d;
+  display: flex;
+}
+.action-btn-cont > * {
+  display: flex;
+  width: 50%;
+  font-size: 2rem;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-btn:hover,
+.remove-btn:hover {
+  background: #4bb543;
+}
+
+/* ticket css */
+.main-cont {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+  justify-content: center;
+}
+
+.ticket-cont {
+  height: 14rem; /* Adjust height to accommodate new section */
+  width: 15rem;
+  background-color: coral;
+  border-radius: 10px 10px 0 0; /* Add rounded corners to the top of the ticket */
+  position: relative;
+}
+.ticket-color {
+  height: 1rem;
+  border-radius: 10px 10px 0 0; /* Add rounded corners to the top of the ticket color band */
+}
+.ticket-id {
+  background-color: yellow;
+  height: 2rem;
+}
+
+.assigned-to {
+  background-color: lightgray;
+  height: 2rem;
+  padding: 0.5rem;
+}
+
+.ticket-lock {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 70px; /* Adjust margin to accommodate new section */
+  margin-right: 5px;
+  font-size: 1.5rem;
+}
+
+.edit-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  font-size: 1.5rem; /* Ensure the icon is visible */
+  color: black; /* Set the color of the icon */
+}
+
+/** Modal css */
+.modal-cont {
+  height: 55vh; /* Adjust height to accommodate new input field */
+  width: 45vw;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 30%;
+  left: 27%;
+  background-color: #ffffff;
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle 3D effect */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal-cont.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.textArea-cont {
+  height: 50%;
+  width: 75%;
+  resize: none;
+  outline: none;
+  border: none;
+  background-color: #dfe4ea;
+  font-size: 2rem;
+  color: black;
+  padding: 2rem;
+  border-radius: 15px 0 0 15px; /* Rounded corners for the left side */
+}
+
+.assigned-to-cont {
+  height: 10%;
+  width: 75%;
+  outline: none;
+  border: none;
+  background-color: #dfe4ea;
+  font-size: 1.5rem;
+  color: black;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 15px; /* Rounded corners */
+}
+
+.priority-colors-container {
+  height: 40%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  background-color: #4b4b4b;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 0 15px 15px 0; /* Rounded corners for the right side */
+}
+
+.priority-color {
+  height: 3rem;
+  width: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.active {
+  border: 5px solid lightsalmon;
+}
+.priority-colors-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+.priority-colors-container > div {
+  color: white;
+  margin: auto;
+}
+

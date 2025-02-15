@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kanban Board</title>
     <link rel="stylesheet" href="canban.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="toolbox-cont">
@@ -13,8 +14,8 @@
         <div class="lightgreen color"></div>
         <div class="lightblue color"></div>
         <div class="black color"></div>
-       
       </div>
+      
       <div class="action-btn-cont">
         <div class="add-btn">
             <i class="fa-solid fa-plus"></i>
@@ -22,7 +23,11 @@
         <div class="remove-btn">
             <i class="fa-solid fa-xmark"></i>
         </div>
+        <div class="clear-btn">
+            <i class="fa-solid fa-trash"></i>
+        </div>
       </div>
+      <div class="title">CANBAN BOARD</div>
     </div>
     <!-- ticket html-->
     <div class="main-cont">
@@ -30,21 +35,27 @@
             <div class="ticket-color"></div>
             <div class="ticket-id">12345</div>
             <div class="task-area">Random Task</div>
+            <div class="assigned-to">Assigned To: John Doe</div>
             <div class="ticket-lock">
                 <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="edit-btn">
+                <i class="fa-solid fa-edit"></i>
             </div>
         </div> -->
     </div>
     <!-- popup -->
     <div class="modal-cont">
         <textarea class="textArea-cont" placeholder="Enter Your Task"></textarea>
+        <input type="text" class="assigned-to-cont" placeholder="Assigned To">
         <div class="priority-colors-container">
-            <div class="lightpink priority-color"></div>
-            <div class="lightgreen priority-color"></div>
-            <div class="lightblue priority-color"></div>
-            <div class="black priority-color active"></div>
+            <div class="lightpink priority-color">Pending</div>
+            <div class="lightgreen priority-color">Process</div>
+            <div class="lightblue priority-color">Testing</div>
+            <div class="black priority-color active">Ended</div>
         </div>
     </div>
+    <div></div>
     <script
       src="https://kit.fontawesome.com/589957875e.js"
       crossorigin="anonymous"

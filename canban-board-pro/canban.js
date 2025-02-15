@@ -2,18 +2,24 @@ const addBtn = document.querySelector(".add-btn");
 const modalCont = document.querySelector(".modal-cont");
 const mainCont = document.querySelector(".main-cont");
 const textArea = document.querySelector(".textArea-cont");
+const assignedToInput = document.querySelector(".assigned-to-cont");
 const allPriorityColors = document.querySelectorAll(".priority-color");
 const removeBtn = document.querySelector(".remove-btn");
+const clearBtn = document.querySelector(".clear-btn");
 const toolboxColors = document.querySelectorAll(".color");
 
 /** local variables */
 let modalPriorityColor = "black";
 let addTaskFlag = false;
 let removeTaskFlag = false;
+let editTaskFlag = false;
+let editTicketId = null;
 const lockClose = "fa-lock";
 const lockOpen = "fa-lock-open";
 const colors = ["lightpink", "lightgreen", "lightblue", "black"];
 const ticketsArr = JSON.parse(localStorage.getItem("tickets")) || [];
+// Initialize ticket counter
+let ticketCounter = localStorage.getItem("ticketCounter") ? parseInt(localStorage.getItem("ticketCounter")) : 1;
 
 /** event handlers */
 
@@ -42,9 +48,9 @@ toolboxColors.forEach(function (colorElem) {
 addBtn.addEventListener("click", function () {
   addTaskFlag = !addTaskFlag;
   if (addTaskFlag) {
-    modalCont.style.display = "flex";
+    modalCont.classList.add("show");
   } else {
-    modalCont.style.display = "none";
+    modalCont.classList.remove("show");
   }
 });
 
@@ -58,10 +64,14 @@ removeBtn.addEventListener("click", function () {
   }
 });
 
+clearBtn.addEventListener("click", function () {
+  clearLocalStorage();
+});
+
 function init() {
   if (localStorage.getItem("tickets")) {
     ticketsArr.forEach(function (ticket) {
-      createTicket(ticket.ticketColor, ticket.taskContent, ticket.ticketId);
+      createTicket(ticket.ticketColor, ticket.taskContent, ticket.ticketId, ticket.assignedTo);
     });
   }
 }
@@ -124,37 +134,77 @@ function handleColor(ticket) {
   });
 }
 
-function createTicket(ticketColor, ticketTask, ticketId) {
+function handleEdit(ticket) {
+  const editBtn = ticket.querySelector(".edit-btn");
+  editBtn.addEventListener("click", function () {
+    editTaskFlag = true;
+    editTicketId = ticket.querySelector(".ticket-id").innerText;
+    const ticketIdx = getTicketIdx(editTicketId);
+    const ticketData = ticketsArr[ticketIdx];
+    textArea.value = ticketData.taskContent;
+    assignedToInput.value = ticketData.assignedTo;
+    modalPriorityColor = ticketData.ticketColor;
+    modalCont.classList.add("show");
+  });
+}
+
+function createTicket(ticketColor, ticketTask, ticketId, assignedTo) {
   const ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
   ticketCont.innerHTML = `
    <div class="ticket-color" style="background-color:${ticketColor}"></div>
     <div class="ticket-id">${ticketId}</div>
     <div class="task-area">${ticketTask}</div>
+    <div class="assigned-to">Assigned To: ${assignedTo}</div>
     <div class="ticket-lock">
         <i class="fa-solid fa-lock"></i>
+    </div>
+    <div class="edit-btn">
+        <i class="fa-solid fa-edit"></i>
     </div>
    `;
   mainCont.appendChild(ticketCont);
   handleRemoval(ticketCont);
-  handleLock(ticketCont, ticketId);
+  handleLock(ticketCont);
   handleColor(ticketCont);
+  handleEdit(ticketCont);
+}
+
+// Function to clear local storage
+function clearLocalStorage() {
+  localStorage.clear();
+  ticketsArr.length = 0;
+  ticketCounter = 1;
+  mainCont.innerHTML = '';
 }
 
 // ADD LISTENNER ON MODAL / POPUP
 modalCont.addEventListener("keydown", function (e) {
   const key = e.key;
-  // console.log("target", e.target.value); - explore
-  if (key == "Shift") {
+  if (key == "Shift" || key == "Escape") {
     const taskContent = textArea.value; // get the content from textArea
-    // const ticketId = shortid()
-    const ticketId = Math.random().toString(36).substring(2, 8);
-    createTicket(modalPriorityColor, taskContent, ticketId);
-    modalCont.style.display = "none";
+    const assignedTo = assignedToInput.value; // get the assigned to value
+    if (editTaskFlag) {
+      const ticketIdx = getTicketIdx(editTicketId);
+      ticketsArr[ticketIdx].taskContent = taskContent;
+      ticketsArr[ticketIdx].assignedTo = assignedTo;
+      ticketsArr[ticketIdx].ticketColor = modalPriorityColor;
+      updateLocalStorage();
+      mainCont.innerHTML = '';
+      init();
+      editTaskFlag = false;
+      editTicketId = null;
+    } else {
+      const ticketId = ticketCounter++; // use the counter for ticket ID and increment it
+      createTicket(modalPriorityColor, taskContent, ticketId, assignedTo);
+      ticketsArr.push({ ticketId, taskContent, ticketColor: modalPriorityColor, assignedTo });
+      updateLocalStorage();
+      localStorage.setItem("ticketCounter", ticketCounter); // update the counter in local storage
+    }
+    modalCont.classList.remove("show");
     textArea.value = "";
+    assignedToInput.value = "";
     addTaskFlag = false;
-    ticketsArr.push({ ticketId, taskContent, ticketColor: modalPriorityColor });
-    updateLocalStorage();
   }
 });
 
